@@ -55,8 +55,8 @@
 							<button type="submit" class="btn bg-success text-white col-md-12">
 								Register</button>
 						</form>
-						<br> Don't have an account?<a href="#"
-							class="text-decoration-none">Create one</a>
+						<br> Bạn Đã Có Tài Khoản <a href="users_login.jsp"
+							class="text-decoration-none">Đăng Nhập Ngay</a>
 
 					</div>
 				</div>

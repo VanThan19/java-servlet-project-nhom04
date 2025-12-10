@@ -31,7 +31,7 @@
 						</c:if>
 
 
-						<c:if test="${not empty ErrorAdminObj }">
+						<c:if test="${not empty errorMsg }">
 							<p class="text-center text-danger fs-3">${errorMsg}</p>
 							<c:remove var="ErrorAdminObj" scope="session" />
 						</c:if>
@@ -52,8 +52,8 @@
 							<button type="submit" class="btn bg-success text-white col-md-12">
 								Login</button>
 						</form>
-						<br> Don't have an account?<a href="DangKyUser.jsp"
-							class="text-decoration-none">Create one</a>
+						<br> Bạn Chưa Có Tài Khoản?<a href="DangKyUser.jsp"
+							class="text-decoration-none">Đăng Ký Tài Khoản</a>
 					</div>
 				</div>
 			</div>

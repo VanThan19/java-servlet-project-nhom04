@@ -70,20 +70,24 @@
 									<td><%=h.getSdt()%></td>
 									<td><%=h.getBenhTat()%></td>
 									<td><%=h.getTrangThai()%></td>
-                                    <td>
-									<%
-									if ("Pending".equals(h.getTrangThai())) {
-									%>
-									<a href="comment.jsp?id=<%=h.getId()%>"
-										class="btn btn-success btn-sm">Comment</a>
-									<%
-									} else {
-									%>
-									<a href="#"
-										class="btn btn-success btn-sm disabled">Comment</a>
-									<%
-									}
-									%>
+									<td>
+										<%
+										if ("Đã xác nhận".equalsIgnoreCase(h.getTrangThai()) || "Hoàn thành".equalsIgnoreCase(h.getTrangThai())) {
+										%> <a
+										href="${pageContext.request.contextPath}/doctor/add_benh_an.jsp?cuocHenId=<%=h.getId()%>&userId=<%=h.getUserId()%>"
+										class="btn btn-sm btn-outline-success">Nhập hồ sơ</a> <%
+                                         } else if ("Pending".equalsIgnoreCase(h.getTrangThai())) {
+                                        %>
+
+										<a href="../updateTrangThai?id=<%=h.getId()%>"
+										class="btn btn-sm btn-warning">Xác nhận</a> <%
+                                        } else {
+                                          %>
+
+										<button class="btn btn-sm btn-secondary" disabled>Không
+											khả dụng</button> <%
+                                        }
+                                       %>
 									</td>
 
 								</tr>

@@ -40,13 +40,13 @@
 			</div>
 			<div class="col-md-3">
 				<div class="card border-danger shadow-sm p-3">
-					<h5 class="text-muted">Tổng Cuộc Hẹn</h5>
+					<h5 class="text-muted">Tổng Lịch Khám</h5>
 					<h2 class="text-danger fw-bold"><%=tongCH%></h2>
 				</div>
 			</div>
 			<div class="col-md-3">
 				<div class="card border-warning shadow-sm p-3">
-					<h5 class="text-muted">Cuộc Hẹn Hôm Nay</h5>
+					<h5 class="text-muted">Lịch Hẹn Hôm Nay</h5>
 					<h2 class="text-warning fw-bold"><%=dao.getCuocHenHomNay()%></h2>
 				</div>
 			</div>

@@ -3,6 +3,7 @@ package com.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -131,8 +132,12 @@ public class DoctorDAO {
 			if (i == 1) {
 				f = true;
 			}
-		} catch (Exception e) {
-			e.printStackTrace();
+		} catch (SQLException e) {
+			if (e.getMessage().contains("REFERENCE")) {
+	            System.err.println("Không thể xóa bác sĩ vì còn lịch hẹn liên quan trong CuocHen.");
+	        } else {
+	            e.printStackTrace();
+	        }
 		}
 		return f;
 	}
@@ -168,79 +173,79 @@ public class DoctorDAO {
 
 	}
 	public int countDoctor() {
-		int i = 0;
+		int count = 0;
 		try {
-			String sql = "select * from doctor";
+			String sql = "select count(*) from doctor";
 			PreparedStatement ps = conn.prepareStatement(sql);
 			ResultSet rs = ps.executeQuery();
 			while(rs.next()) {
-				i++;
+				count = rs.getInt(1);
 			}
 		} catch (Exception e) {
 			
 		}
-		return i;
+		return count;
 	}
 	
 	public int countCuocHen() {
-		int i = 0;
+		int count = 0;
 		try {
-			String sql = "select * from CuocHen";
+			String sql = "select count(*) from CuocHen";
 			PreparedStatement ps = conn.prepareStatement(sql);
 			ResultSet rs = ps.executeQuery();
 			while(rs.next()) {
-				i++;
+				count = rs.getInt(1);
 			}
 		} catch (Exception e) {
 			
 		}
-		return i;
+		return count;
 	}
 	
 	public int countUser() {
-		int i = 0;
+		int count = 0;
 		try {
-			String sql = "select * from Users";
+			String sql = "select count(*) from Users";
 			PreparedStatement ps = conn.prepareStatement(sql);
 			ResultSet rs = ps.executeQuery();
 			while(rs.next()) {
-				i++;
+				count = rs.getInt(1);
 			}
 		} catch (Exception e) {
 			
 		}
-		return i;
+		return count;
 	}
 	
 	public int countBacSiChuyenKhoa() {
-		int i = 0;
+		int count = 0;
 		try {
-			String sql = "select * from BacSiChuyenKhoa";
+			String sql = "select count(*)S from BacSiChuyenKhoa";
 			PreparedStatement ps = conn.prepareStatement(sql);
 			ResultSet rs = ps.executeQuery();
 			while(rs.next()) {
-				i++;
+				count = rs.getInt(1);
 			}
 		} catch (Exception e) {
 			
 		}
-		return i;
+		return count;
 	}
 	
 	public int countCuocHenTheoId(int did) {
-		int i = 0;
+		int count = 0;
 		try {
-			String sql = "select * from CuocHen where doctorId = ?";
+			String sql = "select count(*) from CuocHen where doctorId = ?";
 			PreparedStatement ps = conn.prepareStatement(sql);
 			ps.setInt(1, did);
 			ResultSet rs = ps.executeQuery();
 			while(rs.next()) {
-				i++;
+				count = rs.getInt(1);
 			}
 		} catch (Exception e) {
 			
 		}
-		return i;
+		return count;
 	}
 	
 	public List<Doctor> getDoctorsByChuyenKhoaId(int chuyenKhoaId) {
@@ -272,4 +277,71 @@ public class DoctorDAO {
 	    }
 	    return list;
 	}
+	
+	public boolean checkOldPassword(int doctorId, String oldPassword) {
+		boolean f = false ;
+		
+		try {
+			String sql = "Select * from doctor where id = ? and password = ? ";
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setInt(1, doctorId);
+			ps.setString(2, oldPassword);
+			
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()) {
+				f = true;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return f;
+	}
+	
+	public boolean changePassword(int doctorId, String newPassword) {
+		boolean f = false ;
+		
+		try {
+			String sql = "update doctor set password = ? where id = ? ";
+			PreparedStatement ps = conn.prepareStatement(sql);
+			
+			ps.setString(1, newPassword);
+			ps.setInt(2, doctorId);
+			
+			int i = ps.executeUpdate();
+			if(i==1) {
+				f = true;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return f;
+	}
+	
+	public boolean editDoctorProfile(Doctor d) {
+		boolean f = false;
+
+		try {
+			String sql = "Update Doctor Set FullName = ?, Dob = ?, Qualification = ?, ChuyenKhoa = ?, Email = ?, MobNo = ? Where id = ?";
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setString(1, d.getFullName());
+			ps.setString(2, d.getDob());
+			ps.setString(3, d.getQualification());
+			ps.setString(4, d.getChuyenKhoa());
+			ps.setString(5, d.getEmail());
+			ps.setString(6, d.getMobNo());
+			ps.setInt(7, d.getId());
+
+			int i = ps.executeUpdate();
+			if (i == 1) {
+				f = true;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return f;
+	}
+	
 }

@@ -24,7 +24,7 @@
 					<li class="nav-item"><a class="nav-link active"
 						aria-current="page" href="doctor_login.jsp">Doctor</a></li>
 					<li class="nav-item"><a class="nav-link active"
-						aria-current="page" href="userCuocHen.jsp">Cuộc Hẹn</a></li>
+						aria-current="page" href="userCuocHen.jsp">Lịch Hẹn</a></li>
 					<li class="nav-item"><a class="nav-link active"
 						aria-current="page" href="users_login.jsp">User</a></li>
 
@@ -34,13 +34,21 @@
 
 				<c:if test="${not empty userObj }">
 					<li class="nav-item"><a class="nav-link active"
-						aria-current="page" href="userCuocHen.jsp">CUỘC HẸN</a></li>
+						aria-current="page" href="userCuocHen.jsp">LỊCH HẸN</a></li>
 
 					<li class="nav-item"><a class="nav-link active"
-						aria-current="page" href="xemCuocHen.jsp">XEM CUỘC HẸN</a></li>
+						aria-current="page" href="xemCuocHen.jsp">XEM LỊCH HẸN</a></li>
 
 					<li class="nav-item"><a class="nav-link active"
 						aria-current="page" href="goiYBacSi.jsp">GỢI Ý BÁC SĨ</a></li>
+
+					<!-- NEW: Hồ sơ bệnh án -->
+					<li class="nav-item"><a class="nav-link active"
+						href="userHoSoBenhAn">HỒ SƠ BỆNH ÁN</a></li>
+	
+					<!-- NEW: Chat -->
+					<li class="nav-item"><a class="nav-link active"
+						href="chat.jsp">CHAT BÁC SĨ</a></li>
 
 					<div class="dropdown">
 						<button class="btn btn-success dropdown-toggle" type="button"
@@ -49,7 +57,10 @@
 							<i class="fa-solid fa-user"></i> ${userObj.fullName }
 						</button>
 						<ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-							<li><a class="dropdown-item" href="#">Change Password</a></li>
+							<li><a class="dropdown-item" href="profile.jsp">Hồ Sơ Cá
+									Nhân</a></li>
+							<li><a class="dropdown-item" href="changepassword.jsp">Change
+									Password</a></li>
 							<li><a class="dropdown-item" href="userLogout">Logout</a></li>
 
 						</ul>

@@ -17,20 +17,20 @@ public class DeleteDoctor extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		resp.setContentType("text/html; charset=UTF-8");
 		int id = Integer.parseInt(req.getParameter("id"));
 		
 		DoctorDAO dao = new DoctorDAO(DBConnect.getConn());
 		
 		HttpSession session = req.getSession();
 		
-		if(dao.deleteDoctor(id)) {
-			session.setAttribute("succMsg", "X�a Doctor Th�nh C�ng");
-			resp.sendRedirect("admin/view_doctor.jsp");
+		if (dao.deleteDoctor(id)) {
+		    session.setAttribute("succMsg", "Xóa Doctor Thành Công");
+		} else {
+		    session.setAttribute("errorMsg", 
+		        "Không thể xóa bác sĩ vì vẫn còn lịch hẹn hoặc dữ liệu liên quan.");
 		}
-		else {
-			session.setAttribute("errorMsg", "X�a Doctor Kh�ng Th�nh C�ng");
-			resp.sendRedirect("admin/view_doctor.jsp");
-		}
+		resp.sendRedirect("admin/view_doctor.jsp");
 	}
 	
 

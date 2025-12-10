@@ -11,7 +11,7 @@ public class ThongKeDAO {
         this.conn = conn;
     }
 
-    // Tổng số bệnh nhân
+    
     public int getTongBenhNhan() {
         try {
             PreparedStatement ps = conn.prepareStatement("SELECT COUNT(*) FROM Users");
@@ -21,7 +21,7 @@ public class ThongKeDAO {
         return 0;
     }
 
-    // Tổng số bác sĩ
+ 
     public int getTongBacSi() {
         try {
             PreparedStatement ps = conn.prepareStatement("SELECT COUNT(*) FROM Doctor");
@@ -31,7 +31,7 @@ public class ThongKeDAO {
         return 0;
     }
 
-    // Tổng số cuộc hẹn
+ 
     public int getTongCuocHen() {
         try {
             PreparedStatement ps = conn.prepareStatement("SELECT COUNT(*) FROM CuocHen");
@@ -41,7 +41,7 @@ public class ThongKeDAO {
         return 0;
     }
 
-    // Bác sĩ có nhiều lượt khám nhất
+    
     public Map<String, Integer> getTopBacSi() {
         Map<String, Integer> map = new LinkedHashMap<>();
         try {
@@ -57,7 +57,7 @@ public class ThongKeDAO {
         return map;
     }
 
-    // Thống kê bệnh nhân theo tháng
+
     public Map<String, Integer> getBenhNhanTheoThang() {
         Map<String, Integer> map = new LinkedHashMap<>();
         try {

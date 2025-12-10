@@ -84,7 +84,7 @@ label {
     <%@include file="GiaoDien/navbar.jsp"%>
 
     <div class="booking-container">
-        <h2>🩺 Đặt Cuộc Hẹn Khám Bệnh</h2>
+        <h2>🩺 Đặt Lịch Khám Bệnh</h2>
 
         <%
             String doctorName = request.getParameter("doctor");

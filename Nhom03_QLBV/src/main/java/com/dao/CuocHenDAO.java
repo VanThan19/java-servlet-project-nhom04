@@ -136,23 +136,21 @@ public class CuocHenDAO {
 		}
 		return h;
 	}
-	public boolean updateCommentStatus(int id, int doctId,String comm) {
-		boolean f = false;
-		try {
-			String sql = "update CuocHen set TrangThai = ? where id = ? and doctorId = ?";
-			PreparedStatement ps = conn.prepareStatement(sql);
-			ps.setString(1, comm);
-			ps.setInt(2, id);
-			ps.setInt(3, doctId);
-			
-			int i = ps.executeUpdate();
-			if(i==1) {
-				f = true;
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return f;
+	public boolean updateStatus(int id, String status) {
+	    boolean f = false;
+	    try {
+	        String sql = "UPDATE CuocHen SET TrangThai = ? WHERE Id = ?";
+	        PreparedStatement ps = conn.prepareStatement(sql);
+	        ps.setString(1, status);
+	        ps.setInt(2, id);
+	        int i = ps.executeUpdate();
+	        if (i == 1) {
+	            f = true;
+	        }
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    }
+	    return f;
 	}
 	
 	public List<CuocHen> getAllCuocHen() {

@@ -31,13 +31,13 @@
 
 						<p class="fs-3 text-center">Add Doctor</p>
 
-						<!-- ERROR MESSAGE -->
+					
 						<c:if test="${not empty errorMsg}">
 							<p class="fs-3 text-center text-danger">${errorMsg}</p>
 							<c:remove var="errorMsg" scope="session" />
 						</c:if>
 
-						<!-- SUCCESS MESSAGE -->
+						
 						<c:if test="${not empty succMsg}">
 							<div class="fs-3 text-center text-success" role="alert">${succMsg}</div>
 							<c:remove var="succMsg" scope="session" />
